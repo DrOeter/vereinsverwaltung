@@ -49,6 +49,16 @@ class Account
      */
     private $accountActivities;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $iban;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $bic;
+
     public function __construct()
     {
         $this->accountActivities = new ArrayCollection();
@@ -155,6 +165,30 @@ class Account
                 $accountActivity->setAccount(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIban(): ?string
+    {
+        return $this->iban;
+    }
+
+    public function setIban(string $iban): self
+    {
+        $this->iban = $iban;
+
+        return $this;
+    }
+
+    public function getBic(): ?string
+    {
+        return $this->bic;
+    }
+
+    public function setBic(string $bic): self
+    {
+        $this->bic = $bic;
 
         return $this;
     }

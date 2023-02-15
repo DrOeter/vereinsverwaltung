@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use App\Service\MembershipFeeService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +21,8 @@ class UserController extends AbstractController
      */
     public function index(UserRepository $userRepository): Response
     {
+
+        //dump($userRepository->findAll());
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
@@ -49,10 +52,13 @@ class UserController extends AbstractController
     /**
      * @Route("/{id}", name="app_user_show", methods={"GET"})
      */
-    public function show(User $user): Response
+    public function show(User $user, MembershipFeeService $feeService): Response
     {
+        $fee = $feeService->calculateFee($user);
+
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'fee' => $fee
         ]);
     }
 

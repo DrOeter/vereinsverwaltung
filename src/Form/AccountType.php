@@ -16,6 +16,8 @@ class AccountType extends AbstractType
             ->add('accountHolderName')
             ->add('accountType')
             ->add('statusOfAccount')
+            ->add('iban')
+            ->add('bic')
         ;
     }
 
