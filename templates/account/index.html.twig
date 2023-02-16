@@ -13,6 +13,7 @@
                 <th>AccountHolderName</th>
                 <th>AccountType</th>
                 <th>StatusOfAccount</th>
+                <th>User</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                 <td>{{ account.accountHolderName }}</td>
                 <td>{{ account.accountType }}</td>
                 <td>{{ account.statusOfAccount }}</td>
+                <td>{{ account.user.userName }}</td>
                 <td>
                     <a href="{{ path('app_account_show', {'id': account.id}) }}">show</a>
                     <a href="{{ path('app_account_edit', {'id': account.id}) }}">edit</a>

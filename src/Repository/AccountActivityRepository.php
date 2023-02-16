@@ -39,20 +39,21 @@ class AccountActivityRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return AccountActivity[] Returns an array of AccountActivity objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+
+   public function getSumOfAllAccountActivities(\DateTime $from, \DateTime $to)
+   {
+       $query = $this->createQueryBuilder('a')
+           ->select('SUM(a.amount) as sum')
+           ->andWhere('a.transactionDate BETWEEN :from AND :to')
+           ->setParameter('from', $from->format('Y-m-d'))
+           ->setParameter('to', $to->format('Y-m-d'))
+           ->getQuery()
+       ;
+
+       $sumOfAllAcoountActivities = $query->getScalarResult();
+
+       return $sumOfAllAcoountActivities[0]['sum'];
+   }
 
 //    public function findOneBySomeField($value): ?AccountActivity
 //    {

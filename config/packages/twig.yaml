@@ -2,6 +2,7 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
         membership_fee_service: '@App\Service\MembershipFeeService'
+        accounting_simulation_service: '@App\Service\AccountingSimulationService'
 
 when@test:
     twig:
