@@ -18,9 +18,11 @@ class AnnualBalanceController extends AbstractController
      */
     public function index(AccountingSimulationService $accountingSimulationService): Response
     {
-        $thisYear = '2023';
+        $from = new \DateTime('01-01-2023');
+        $to = new \DateTime('31-01-2023');
+        $thisYear = $from->format('Y');
 
-        $annualBalance = $accountingSimulationService->calculateAnnualBalance($thisYear);
+        $annualBalance = $accountingSimulationService->calculateAnnualBalance($from, $to);
 
         return $this->render('annual_balance/index.html.twig', [
             'annualBalance' => $annualBalance ?? 'no account activities found',
