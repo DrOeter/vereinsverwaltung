@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AccountActivity index{% endblock %}
+
+{% block body %}
+    <h1>AccountActivity index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>AccountNumber</th>
+                <th>TransactionDate</th>
+                <th>TransactionType</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for account_activity in account_activities %}
+            <tr>
+                <td>{{ account_activity.id }}</td>
+                <td>{{ account_activity.accountNumber }}</td>
+                <td>{{ account_activity.transactionDate ? account_activity.transactionDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ account_activity.transactionType }}</td>
+                <td>{{ account_activity.amount }}</td>
+                <td>{{ account_activity.description }}</td>
+                <td>
+                    <a href="{{ path('app_account_activity_show', {'id': account_activity.id}) }}">show</a>
+                    <a href="{{ path('app_account_activity_edit', {'id': account_activity.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_account_activity_new') }}">Create new</a>
+{% endblock %}

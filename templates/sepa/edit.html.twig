@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Sepa{% endblock %}
+
+{% block body %}
+    <h1>Edit Sepa</h1>
+
+    {{ include('sepa/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_sepa_index') }}">back to list</a>
+
+    {{ include('sepa/_delete_form.html.twig') }}
+{% endblock %}

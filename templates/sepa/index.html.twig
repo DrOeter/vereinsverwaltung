@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sepa index{% endblock %}
+
+{% block body %}
+    <h1>Sepa index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Iban</th>
+                <th>Bic</th>
+                <th>BeneficiaryName</th>
+                <th>PurposeOfThePayment</th>
+                <th>Amount</th>
+                <th>Currency</th>
+                <th>OrderDate</th>
+                <th>MandateReference</th>
+                <th>CreditorId</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sepa in sepas %}
+            <tr>
+                <td>{{ sepa.id }}</td>
+                <td>{{ sepa.iban }}</td>
+                <td>{{ sepa.bic }}</td>
+                <td>{{ sepa.beneficiaryName }}</td>
+                <td>{{ sepa.purposeOfThePayment }}</td>
+                <td>{{ sepa.amount }}</td>
+                <td>{{ sepa.currency }}</td>
+                <td>{{ sepa.orderDate ? sepa.orderDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ sepa.mandateReference }}</td>
+                <td>{{ sepa.creditorId }}</td>
+                <td>
+                    <a href="{{ path('app_sepa_show', {'id': sepa.id}) }}">show</a>
+                    <a href="{{ path('app_sepa_edit', {'id': sepa.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_sepa_new') }}">Create new</a>
+{% endblock %}
