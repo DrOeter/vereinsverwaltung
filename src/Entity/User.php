@@ -4,11 +4,14 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactory;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -61,6 +64,11 @@ class User
      * @ORM\OneToOne(targetEntity=Sepa::class, inversedBy="user", cascade={"persist", "remove"})
      */
     private $sepa;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
 
     public function getId(): ?int
     {
@@ -171,6 +179,39 @@ class User
     public function setSepa(?Sepa $sepa): self
     {
         $this->sepa = $sepa;
+
+        return $this;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPlainPassword(string $password): self
+    {
+        //create Password Hasher
+        $passwordHasherFactory = new PasswordHasherFactory([
+            // auto hasher with default options for the User class (and children)
+            User::class => ['algorithm' => 'auto'],
+
+            // auto hasher with custom options for all PasswordAuthenticatedUserInterface instances
+            PasswordAuthenticatedUserInterface::class => [
+                'algorithm' => 'auto',
+                'cost' => 15,
+            ],
+        ]);
+        $passwordHasher = new UserPasswordHasher($passwordHasherFactory);
+
+        $hashedPassword = $passwordHasher->hashPassword($this, $password);
+        $this->setPassword($hashedPassword);
+
+        return $this;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
 
         return $this;
     }
