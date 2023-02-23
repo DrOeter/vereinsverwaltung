@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User
+class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -188,7 +188,7 @@ class User
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPlainPassword(string $password): self
     {
         //create Password Hasher
         $passwordHasherFactory = new PasswordHasherFactory([
@@ -203,13 +203,16 @@ class User
         ]);
         $passwordHasher = new UserPasswordHasher($passwordHasherFactory);
 
-        //TODO: finish
-        // hash the password (based on the password hasher factory config for the $user class)
-//        $hashedPassword = $passwordHasher->hashPassword(
-//            ,
-//            $password
-//        );
-//        $user->setPassword($hashedPassword);
+        $hashedPassword = $passwordHasher->hashPassword($this, $password);
+        $this->setPassword($hashedPassword);
 
+        return $this;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
     }
 }

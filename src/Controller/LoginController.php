@@ -25,20 +25,4 @@ class LoginController extends AbstractController
             'error'         => $error,
         ]);
     }
-
-    /**
-     * Debug Route to create a User
-     * @Route("/debug", name="debug")
-     */
-    public function createUser()
-    {
-        $user = new User();
-        $user->setUsername('Test User');
-        $user->setFirstName("Test");
-        $user->setLastName("User");
-        $user->setProfession(1);
-        $user->setBirthday(new DateTime("13.01.1997"));
-
-        return $this->redirectToRoute("app_login");
-    }
 }
