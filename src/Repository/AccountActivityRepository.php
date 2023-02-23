@@ -40,18 +40,21 @@ class AccountActivityRepository extends ServiceEntityRepository
     }
 
 
-   public function getSumOfAllAccountActivities(\DateTime $from, \DateTime $to)
+   public function getSumOfAllAccountActivities(string $year)
    {
+        $year .= '-%';
+        $qb = $this->createQueryBuilder('a');
+
        $query = $this->createQueryBuilder('a')
            ->select('SUM(a.amount) as sum')
-           ->andWhere('a.transactionDate BETWEEN :from AND :to')
-           ->setParameter('from', $from->format('Y-m-d'))
-           ->setParameter('to', $to->format('Y-m-d'))
+           ->where(
+                $qb->expr()->like('a.transactionDate', ':year')
+           )
+            ->setPArameter('year', $year)
            ->getQuery()
        ;
 
        $sumOfAllAcoountActivities = $query->getScalarResult();
-
        return $sumOfAllAcoountActivities[0]['sum'];
    }
 

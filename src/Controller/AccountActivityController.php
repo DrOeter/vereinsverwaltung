@@ -56,35 +56,39 @@ class AccountActivityController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}/edit", name="app_account_activity_edit", methods={"GET", "POST"})
-     */
-    public function edit(Request $request, AccountActivity $accountActivity, AccountActivityRepository $accountActivityRepository): Response
-    {
-        $form = $this->createForm(AccountActivityType::class, $accountActivity);
-        $form->handleRequest($request);
+    // account activity should not be editable, as the data only reflects data from third-party systems
+    //
+    // /**
+    //  * @Route("/{id}/edit", name="app_account_activity_edit", methods={"GET", "POST"})
+    //  */
+    // public function edit(Request $request, AccountActivity $accountActivity, AccountActivityRepository $accountActivityRepository): Response
+    // {
+    //     $form = $this->createForm(AccountActivityType::class, $accountActivity);
+    //     $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $accountActivityRepository->add($accountActivity, true);
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $accountActivityRepository->add($accountActivity, true);
 
-            return $this->redirectToRoute('app_account_activity_index', [], Response::HTTP_SEE_OTHER);
-        }
+    //         return $this->redirectToRoute('app_account_activity_index', [], Response::HTTP_SEE_OTHER);
+    //     }
 
-        return $this->renderForm('account_activity/edit.html.twig', [
-            'account_activity' => $accountActivity,
-            'form' => $form,
-        ]);
-    }
+    //     return $this->renderForm('account_activity/edit.html.twig', [
+    //         'account_activity' => $accountActivity,
+    //         'form' => $form,
+    //     ]);
+    // }
 
-    /**
-     * @Route("/{id}", name="app_account_activity_delete", methods={"POST"})
-     */
-    public function delete(Request $request, AccountActivity $accountActivity, AccountActivityRepository $accountActivityRepository): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$accountActivity->getId(), $request->request->get('_token'))) {
-            $accountActivityRepository->remove($accountActivity, true);
-        }
+    // account activity should not be deleted, as the data only reflects data from third-party systems
+    //
+    // /**
+    //  * @Route("/{id}", name="app_account_activity_delete", methods={"POST"})
+    //  */
+    // public function delete(Request $request, AccountActivity $accountActivity, AccountActivityRepository $accountActivityRepository): Response
+    // {
+    //     if ($this->isCsrfTokenValid('delete'.$accountActivity->getId(), $request->request->get('_token'))) {
+    //         $accountActivityRepository->remove($accountActivity, true);
+    //     }
 
-        return $this->redirectToRoute('app_account_activity_index', [], Response::HTTP_SEE_OTHER);
-    }
+    //     return $this->redirectToRoute('app_account_activity_index', [], Response::HTTP_SEE_OTHER);
+    // }
 }

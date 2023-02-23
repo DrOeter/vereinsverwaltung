@@ -52,9 +52,9 @@ class AccountingSimulationService
 
     // TODO: Jahresbilianz berechnen
     // summe aller amounts aller accountaktivitäten einer jahres
-    public function calculateAnnualBalance(\DateTIme $from, \DateTime $to)
+    public function calculateAnnualBalance(string $year)
     {
-        return $this->accountActivityRepository->getSumOfAllAccountActivities($from, $to);
+        return $this->accountActivityRepository->getSumOfAllAccountActivities($year);
     }
 
     public function getMoney()
@@ -64,7 +64,7 @@ class AccountingSimulationService
         {
             $this->executeSepa($user);
         }
-dump($this->accountActivityRepository->findAll());
+
         return 0;
     }
 
