@@ -21,7 +21,7 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
-                target_path: app_index
+                default_target_path: app_index
 
                 enable_csrf: true
 
