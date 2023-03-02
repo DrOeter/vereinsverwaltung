@@ -91,13 +91,11 @@
                 fetchData("{{ path('app_annual_balance_get_money') }}")
                     .then(data => {
                         console.log(data);
+                        showNotification();
                     })
                     .catch(error => {
                         console.error(error);
                     });
-
-
-                showNotification();
             });
 
             function showNotification() {

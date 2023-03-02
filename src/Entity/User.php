@@ -7,11 +7,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactory;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
-class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
+class User implements UserInterface, \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -75,12 +76,12 @@ class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticate
         return $this->id;
     }
 
-    public function getUserName(): ?string
+    public function getUsername(): ?string
     {
         return $this->userName;
     }
 
-    public function setUserName(string $userName): self
+    public function setUsername(string $userName): self
     {
         $this->userName = $userName;
 
@@ -215,4 +216,37 @@ class User implements \Symfony\Component\Security\Core\User\PasswordAuthenticate
 
         return $this;
     }
+
+    public function getRoles() {
+        return ['ROLE_USER'];
+    }
+
+    /**
+     * Returns the salt that was originally used to hash the password.
+     *
+     * This can return null if the password was not hashed using a salt.
+     *
+     * This method is deprecated since Symfony 5.3, implement it from {@link LegacyPasswordAuthenticatedUserInterface} instead.
+     *
+     * @return string|null
+     */
+    public function getSalt() {
+
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     */
+    public function eraseCredentials() {
+        
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->userName;
+    }
+
 }

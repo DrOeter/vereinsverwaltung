@@ -35,7 +35,7 @@ class AnnualBalanceController extends AbstractController
     {
         $accountingSimulationService->getMoney();
 
-        return new JsonResponse();
+        return new JsonResponse('get rich or die trying');
     }
 
 }
