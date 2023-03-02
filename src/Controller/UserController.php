@@ -19,12 +19,28 @@ class UserController extends AbstractController
     /**
      * @Route("/", name="app_user_index", methods={"GET"})
      */
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository, MembershipFeeService $feeService): Response
     {
-
         //dump($userRepository->findAll());
         return $this->render('user/index.html.twig', [
             'users' => $userRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard", name="app_user_dashboard", methods={"GET"})
+     */
+    public function dashboard(UserRepository $userRepository, MembershipFeeService $feeService): Response
+    {
+        $user = $this->getUser();
+        if(!$user) {
+            $user = $userRepository->findAll()[0];
+        }
+
+        //dump($userRepository->findAll());
+        return $this->render('user/dashboard.html.twig', [
+            'user' => $user,
+            'fee' => $feeService->calculateFee($user),
         ]);
     }
 

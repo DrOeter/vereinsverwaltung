@@ -62,56 +62,16 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
+    <body class="dark">
     {% include 'layout/navbar.html.twig' %}
-
-    <div id="myNotification" class="notification" style="display: none;">
-            <img src="http://127.0.0.1:8000/mrkrabs/mrkrabs.png" alt="Notification Image">
-            <p>Success</p>
-            <span class="close-button" onclick="closeNotification()">&times;</span>
-        </div>
-        <div class="center">
-		    <button id="getMoneyButton" class="button">Get Money $$$</button>
-	    </div>
         {% block body %}
 
         {% endblock %}
-    {% include 'layout/footer.html.twig' %}
-        <script>
-            const getMoneyButton = document.getElementById("getMoneyButton");
 
-            async function fetchData(url) {
-                const response = await fetch(url);
-                const data = await response.json();
-                return data;
-            }
-            // Attach an event listener to the button
-            getMoneyButton.addEventListener("click", function() {
-                //
-                fetchData("{{ path('app_annual_balance_get_money') }}")
-                    .then(data => {
-                        console.log(data);
-                    })
-                    .catch(error => {
-                        console.error(error);
-                    });
+        {% include 'layout/footer.html.twig' %}
 
+        {% block scripts %}
 
-                showNotification();
-            });
-
-            function showNotification() {
-                const notification = document.getElementById("myNotification");
-                notification.style.display = "block";
-                setTimeout(() => {
-                    notification.style.display = "none";
-                }, 5000); // hide the notification after 5 seconds
-            }
-
-            function closeNotification() {
-                const notification = document.getElementById("myNotification");
-                notification.style.display = "none";
-            }
-        </script>
+        {% endblock %}
     </body>
 </html>

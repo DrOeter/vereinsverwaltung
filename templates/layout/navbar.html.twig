@@ -4,7 +4,11 @@
             <img src="https://flowbite.com/docs/images/logo.svg" class="h-6 mr-3 sm:h-9" alt="Vereinsverwaltung Logo" />
             <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Vereinsverwaltung</span>
         </a>
+
+
         <div class="flex items-center md:order-2">
+            {% include 'layout/getMoney.html.twig' %}
+
             {% if is_granted("ROLE_USER") %}
             <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span class="sr-only">Open user menu</span>
