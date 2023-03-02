@@ -5,6 +5,7 @@
 npm-debug.log
 yarn-error.log
 /vendor/
-/var/cache/
+/var/
 .env
+.env.local
 ###< symfony/webpack-encore-bundle ###
