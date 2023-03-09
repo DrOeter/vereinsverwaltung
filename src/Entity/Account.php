@@ -59,6 +59,11 @@ class Account
      */
     private $bic;
 
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $balance;
+
     public function __construct()
     {
         $this->accountActivities = new ArrayCollection();
@@ -189,6 +194,18 @@ class Account
     public function setBic(string $bic): self
     {
         $this->bic = $bic;
+
+        return $this;
+    }
+
+    public function getBalance(): ?float
+    {
+        return $this->balance;
+    }
+
+    public function setBalance(float $balance): self
+    {
+        $this->balance = $balance;
 
         return $this;
     }

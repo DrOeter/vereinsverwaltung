@@ -19,6 +19,7 @@ class AccountFixtures extends Fixture implements DependentFixtureInterface
         $account->setIban('wet8ug4iugu4gh4');
         $account->setBic('cock');
         $account->setUser($this->getReference('superadmin'));
+        $account->setBalance(100.00);
         $manager->persist($account);
 
         $account = new Account();
@@ -29,6 +30,7 @@ class AccountFixtures extends Fixture implements DependentFixtureInterface
         $account->setIban('wet8ug4iugu4gh4');
         $account->setBic('cock');
         $account->setUser($this->getReference('kalle'));
+        $account->setBalance(100.00);
         $manager->persist($account);
 
         $account = new Account();
@@ -39,6 +41,7 @@ class AccountFixtures extends Fixture implements DependentFixtureInterface
         $account->setIban('wet8ug4iugu4gh4w');
         $account->setBic('cockc');
         $account->setUser($this->getReference('marianne'));
+        $account->setBalance(100.00);
         $manager->persist($account);
 
         $account = new Account();
@@ -49,6 +52,7 @@ class AccountFixtures extends Fixture implements DependentFixtureInterface
         $account->setIban('wet8ug4iugu4gh344');
         $account->setBic('coc121k');
         $account->setUser($this->getReference('zork'));
+        $account->setBalance(100.00);
         $manager->persist($account);
 
         $manager->flush();
