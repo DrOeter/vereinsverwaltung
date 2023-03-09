@@ -12,7 +12,7 @@
             {% if is_granted("ROLE_USER") %}
             <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span class="sr-only">Open user menu</span>
-                <img class="w-8 h-8 rounded-full" src="/img/profile_pic.png" alt="user photo">
+                <img class="w-8 h-8 rounded-full" src="/mrkrabs/sbsp.png" alt="user photo">
             </button>
             {% else %}
                 <a href="/login" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</a>
@@ -24,6 +24,8 @@
                 <div class="px-4 py-3">
                     <span class="block text-sm text-gray-900 dark:text-white">{{ app.user.firstName ?? "" }} {{ app.user.lastName ?? "" }}</span>
                     <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">{{ app.user.userName ?? "" }}</span>
+                    <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">{{ app.user.account.balance ?? "" }}€</span>
+
                 </div>
                 <ul class="py-2" aria-labelledby="user-menu-button">
                     <li>
