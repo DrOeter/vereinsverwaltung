@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>PHP</ID>
+  <OriginalElement>C:/Users/Jannik/Desktop/Berufsschule/vereinsverwaltung/src</OriginalElement>
+  <nodes>
+    <node x="1359.0" y="1948.0">\App\Controller\AccountController</node>
+    <node x="76.25" y="213.0">\App\Entity\User</node>
+    <node x="1093.0" y="2145.0">\App\Service\AccountingSimulationService</node>
+    <node x="689.0" y="2145.0">\Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait</node>
+    <node x="2062.0" y="1126.0">\App\Entity\Sepa</node>
+    <node x="1040.0" y="1937.0">\App\Controller\UserController</node>
+    <node x="319.0" y="1992.0">\App\Controller\PagesController</node>
+    <node x="707.5" y="1229.0">\Symfony\Bundle\FrameworkBundle\Controller\AbstractController</node>
+    <node x="183.0" y="55.0">\Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface</node>
+    <node x="461.0" y="1970.0">\App\Controller\AccountActivityController</node>
+    <node x="358.0" y="2145.0">\App\Entity\AccountActivity</node>
+    <node x="1424.0" y="2145.0">\App\Service\MembershipFeeService</node>
+    <node x="0.0" y="1948.0">\App\Controller\SepaController</node>
+    <node x="794.0" y="1981.0">\App\Controller\LoginController</node>
+    <node x="1641.0" y="2145.0">C:/Users/Jannik/Desktop/Berufsschule/vereinsverwaltung/vendor/symfony/http-kernel</node>
+    <node x="0.0" y="2145.0">\App\Entity\Account</node>
+    <node x="812.0" y="1126.0">\Symfony\Contracts\Service\ServiceSubscriberInterface</node>
+    <node x="1718.0" y="1981.0">\App\Controller\AnnualBalanceController</node>
+    <node x="0.0" y="0.0">\Symfony\Component\Security\Core\User\UserInterface</node>
+    <node x="1784.0" y="2145.0">C:/Users/Jannik/Desktop/Berufsschule/vereinsverwaltung/src</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="\App\Controller\AccountActivityController" target="\Symfony\Bundle\FrameworkBundle\Controller\AbstractController">
+      <point x="0.0" y="-48.5" />
+      <point x="617.5" y="1917.0" />
+      <point x="850.0" y="1917.0" />
+      <point x="-57.0" y="324.0" />
+    </edge>
+    <edge source="\App\Controller\PagesController" target="\Symfony\Bundle\FrameworkBundle\Controller\AbstractController">
+      <point x="0.0" y="-26.5" />
+      <point x="380.0" y="1907.0" />
+      <point x="793.0" y="1907.0" />
+      <point x="-114.0" y="324.0" />
+    </edge>
+    <edge source="\App\Controller\AnnualBalanceController" target="\Symfony\Bundle\FrameworkBundle\Controller\AbstractController">
+      <point x="0.0" y="-37.5" />
+      <point x="1867.5" y="1897.0" />
+      <point x="1078.0" y="1897.0" />
+      <point x="171.0" y="324.0" />
+    </edge>
+    <edge source="\App\Entity\User" target="\Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface">
+      <point x="57.5" y="-434.0" />
+      <point x="248.75" y="188.0" />
+      <point x="301.0" y="188.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="\App\Controller\AccountController" target="\Symfony\Bundle\FrameworkBundle\Controller\AbstractController">
+      <point x="0.0" y="-70.5" />
+      <point x="1528.5" y="1907.0" />
+      <point x="1021.0" y="1907.0" />
+      <point x="114.0" y="324.0" />
+    </edge>
+    <edge source="\App\Controller\SepaController" target="\Symfony\Bundle\FrameworkBundle\Controller\AbstractController">
+      <point x="0.0" y="-70.5" />
+      <point x="149.5" y="1897.0" />
+      <point x="736.0" y="1897.0" />
+      <point x="-171.0" y="324.0" />
+    </edge>
+    <edge source="\App\Entity\User" target="\Symfony\Component\Security\Core\User\UserInterface">
+      <point x="-57.5" y="-434.0" />
+      <point x="133.75" y="188.0" />
+      <point x="81.5" y="188.0" />
+      <point x="0.0" y="81.5" />
+    </edge>
+    <edge source="\Symfony\Bundle\FrameworkBundle\Controller\AbstractController" target="\Symfony\Contracts\Service\ServiceSubscriberInterface">
+      <point x="0.0" y="-324.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="\App\Controller\LoginController" target="\Symfony\Bundle\FrameworkBundle\Controller\AbstractController">
+      <point x="0.0" y="-37.5" />
+      <point x="0.0" y="324.0" />
+    </edge>
+    <edge source="\App\Controller\UserController" target="\Symfony\Bundle\FrameworkBundle\Controller\AbstractController">
+      <point x="0.0" y="-81.5" />
+      <point x="1189.5" y="1917.0" />
+      <point x="964.0" y="1917.0" />
+      <point x="57.0" y="324.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.4736086804340218" x="189.00672529746487" y="2363.639051067918" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
