@@ -1,4 +1,70 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+            <form action="/user/{{ user.id }}/edit" method="POST">
+                <input type="hidden" name="_token" value="{{ csrf_token('update' ~ user.id) }}">
+                <div class="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
+                    <div class="sm:col-span-2">
+                        <label for="user_userName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+                        {{ form_widget(form.userName, { 'attr': {'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
+                    </div>
+                    <div class="w-full">
+                        <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Vorname</label>
+                        {{ form_widget(form.firstName, { 'attr': { 'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}}) }}
+                    </div>
+                    <div>
+                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nachname</label>
+                        {{ form_widget(form.lastName, { 'attr': { 'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'}}) }}
+                    </div>
+
+                    <div>
+                        <label for="birthday" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Geburtstag</label>
+                        <div class="relative max-w-sm">
+                            {{ form_widget(form.birthday, { 'attr': {'datepicker': '', 'datepicker-format': 'yyyy-mm-dd', 'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="profession" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profession</label>
+                        {{ form_widget(form.profession, {'attr': { 'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'} }) }}
+                    </div>
+
+                    <div>
+                        <label for="memePriority" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Meme Priority</label>
+                        {{ form_widget(form.memePriority, { 'attr': { 'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' } }) }}
+                    </div>
+
+                    <div>
+                        <label for="user_password_first" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Passwort</label>
+                        {{ form_widget(form.password.first, { 'attr': { 'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' } }) }}
+                        <label for="user_password_second" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Passwort bestätigen</label>
+                        {{ form_widget(form.password.second, { 'attr': { 'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' } }) }}
+                    </div>
+
+                    <div>
+                        <label for="sepa" class="block mb-2 hidden">SEPA</label>
+                        <div class="flex items-center h-5 py-auto">
+                            {{ form_widget(form.sepaAllowed, { 'attr': { 'class': 'w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 mr-2' }}) }}
+{#                            <input id="sepa" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 mr-2" {% if user.sepaAllowed %} checked {% endif %} disabled>#}
+                            <div class="py-auto ml-2">
+                                <label for="sepa" class="block text-sm font-medium text-gray-900 dark:text-white">SEPA Zustimmung</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="flex items-center space-x-4">
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        {{ button_label|default('Save') }}
+                    </button>
+
+                    <a href="{{ path('app_user_dashboard') }}" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                        {{ button_label|default('Cancel') }}
+                    </a>
+                </div>
+            </form>
 {{ form_end(form) }}
+
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.3/datepicker.min.js"></script>
+{% endblock %}

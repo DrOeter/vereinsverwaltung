@@ -217,6 +217,11 @@ class User implements UserInterface, \Symfony\Component\Security\Core\User\Passw
         return $this;
     }
 
+    public function getImg()
+    {
+        return null;
+    }
+
     public function getRoles() {
         return ['ROLE_USER'];
     }
