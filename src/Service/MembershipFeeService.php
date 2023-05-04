@@ -47,7 +47,7 @@ class MembershipFeeService
             
         }
 
-        $fee = $fee * $professionFactor * $ageFactor;
+        $fee = $fee * $professionFactor * self::MEMBER_SHIP_SERVICE_AGE_CLASSES[$ageFactor];
 
         return $fee;
     }

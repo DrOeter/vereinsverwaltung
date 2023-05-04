@@ -3,6 +3,7 @@ namespace App\Service;
 
 use App\Entity\AccountActivity;
 use App\Entity\User;
+use App\Repository\AccountRepository;
 use App\Repository\AccountActivityRepository;
 use App\Repository\UserRepository;
 use App\Service\MembershipFeeService;
@@ -11,13 +12,15 @@ use Doctrine\ORM\EntityManagerInterface;
 class AccountingSimulationService
 {
     private $feeService;
+    private $accountRepository;
     private $accountActivityRepository;
     private $userRepository;
     private $em;
 
-    public function __construct(MembershipFeeService $feeService, AccountActivityRepository $accountActivityRepository, UserRepository $userRepository, EntityManagerInterface $em)
+    public function __construct(MembershipFeeService $feeService, AccountRepository $accountRepository, AccountActivityRepository $accountActivityRepository, UserRepository $userRepository, EntityManagerInterface $em)
     {
         $this->feeService = $feeService;
+        $this->accountRepository = $accountRepository;
         $this->accountActivityRepository = $accountActivityRepository;
         $this->userRepository = $userRepository;
         $this->em = $em;
@@ -81,7 +84,8 @@ class AccountingSimulationService
     // summe aller amounts aller accountaktivitäten einer jahres
     public function calculateAnnualBalance(string $year)
     {
-        return $this->accountActivityRepository->getSumOfAllAccountActivities($year);
+        $superadminAccount = $this->accountRepository->find(1);
+        return $this->accountActivityRepository->getSumOfAllAccountActivities($year, $superadminAccount);
     }
 
     public function getMoney()

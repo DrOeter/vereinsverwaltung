@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Account;
 use App\Entity\AccountActivity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -40,14 +41,16 @@ class AccountActivityRepository extends ServiceEntityRepository
     }
 
 
-   public function getSumOfAllAccountActivities(string $year)
+   public function getSumOfAllAccountActivities(string $year, Account $superadminAccount)
    {
         $year .= '-%';
         $qb = $this->createQueryBuilder('a');
 
        $query = $this->createQueryBuilder('a')
            ->select('SUM(a.amount) as sum')
-           ->where(
+           ->where('a.account = :superadminAccount')
+           ->setParameter('superadminAccount', $superadminAccount)
+           ->andWhere(
                 $qb->expr()->like('a.transactionDate', ':year')
            )
             ->setPArameter('year', $year)
@@ -55,6 +58,7 @@ class AccountActivityRepository extends ServiceEntityRepository
        ;
 
        $sumOfAllAcoountActivities = $query->getScalarResult();
+       dump($sumOfAllAcoountActivities);
        return $sumOfAllAcoountActivities[0]['sum'];
    }
 
